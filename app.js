@@ -7,7 +7,7 @@ app.get('/', (req, res) => {
     res.send('sadf');
 });
 
-const port = 5000 || process.env.PORT;
+const port = process.env.PORT || 5000;
 app.listen(port, () => {
-    console.log(`App started on port ${port}`);
+    console.log(`Server started on port ${port}`);
 });
