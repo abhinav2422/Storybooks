@@ -9,4 +9,8 @@ router.get('/dashboard', (req, res) => {
     res.render('index/dashboard');
 });
 
+router.get('/about', (req, res) => {
+    res.render('index/about');
+});
+
 module.exports = router;
