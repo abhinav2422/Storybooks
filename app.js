@@ -1,6 +1,7 @@
 const express = require('express');
 const path = require('path');
 const exphbs = require('express-handlebars');
+const bodyParser = require('body-parser');
 const passport = require('passport');
 const mongoose = require('mongoose');
 const cookieParser = require('cookie-parser');
@@ -8,6 +9,7 @@ const session = require('express-session');
 
 //Load user model
 require('./models/User');
+require('./models/Story');
 
 //Passport config
 require('./config/passport')(passport);
@@ -32,6 +34,9 @@ mongoose.connect(keys.mongoURI, {
     .catch(err => console.log(err));
 
 const app = express();
+
+app.use(bodyParser.urlencoded({ extended: false }));
+app.use(bodyParser.json());
 
 //Handlebars Middleware
 app.engine('handlebars', exphbs ({
