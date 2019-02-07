@@ -33,7 +33,7 @@ const StorySchema = new Schema({
             ref: 'users'
         }
     }],
-    users: {
+    user:{
         type: Schema.Types.ObjectId,
         ref: 'users'
     },
@@ -43,5 +43,5 @@ const StorySchema = new Schema({
     }
 });
 
-//Create collection and add data
+//Create collection and add schema
 mongoose.model('stories', StorySchema, 'stories');

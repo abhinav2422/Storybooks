@@ -25,8 +25,8 @@ router.get('/show/:id', (req, res) => {
         .then(story => {
             res.render('stories/show', {
                 story: story
-            })
-        })
+            });
+        });
 });
 
 //Add story form
@@ -34,7 +34,7 @@ router.get('/add', ensureAuthenticated, (req, res) => {
     res.render('stories/add');
 });
 
-//Process add stories
+//Add story
 router.post('/', (req, res) => {
     let allowComments;
 
@@ -46,8 +46,8 @@ router.post('/', (req, res) => {
 
     const newStory = {
         title: req.body.title,
-        status: req.body.status,
         body: req.body.body,
+        status: req.body.status,
         allowComments: allowComments,
         user: req.user.id
     }
