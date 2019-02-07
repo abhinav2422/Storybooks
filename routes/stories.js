@@ -31,6 +31,28 @@ router.get('/show/:id', (req, res) => {
         });
 });
 
+//Stories from a user
+router.get('/user/:userId', (req, res) => {
+    Story.find({user: req.params.userId, status: 'public'})
+        .populate('user')
+        .then(stories => {
+            res.render('stories/index', {
+                stories: stories
+            })
+        })
+});
+
+//Logged in users stories
+router.get('/my', ensureAuthenticated, (req, res) => {
+    Story.find({user: req.user.id})
+        .populate('user')
+        .then(stories => {
+            res.render('stories/index', {
+                stories: stories
+            })
+        })
+});
+
 //Add story form
 router.get('/add', ensureAuthenticated, (req, res) => {
     res.render('stories/add');
