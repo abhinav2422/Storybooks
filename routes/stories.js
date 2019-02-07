@@ -22,6 +22,7 @@ router.get('/show/:id', (req, res) => {
         _id: req.params.id
     })
         .populate('user')
+        .populate('comments.commentUser')
         .then(story => {
             res.render('stories/show', {
                 story: story
